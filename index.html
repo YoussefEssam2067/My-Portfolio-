@@ -174,6 +174,22 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .copy:hover { border-color: var(--accent); color: var(--accent); }
 footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid var(--line); padding-top: 16px; }
 
+/* documents */
+.docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+.doc { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.shot { display: block; width: 100%; padding: 0; margin: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); overflow: hidden; cursor: zoom-in; aspect-ratio: 3 / 4; }
+.shot img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: top; }
+.shot:hover { border-color: var(--accent); }
+.doc h3 { font-size: 18px; font-weight: 700; }
+.doc p { font-size: 15px; color: var(--muted); }
+.doc .note { font-family: var(--font-mono); font-size: 12px; }
+.doc .btn { align-self: flex-start; padding: 8px 14px; font-size: 13px; }
+.lb { position: fixed; inset: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 94%, transparent); overflow: auto; padding-block: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.lb-inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.lb-inner img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.lb-close { align-self: flex-end; position: sticky; top: 0; font-family: var(--font-mono); font-size: 13px; background: var(--ink); color: var(--bg); border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer; }
+.lb-close:hover { background: var(--accent); }
+
 @media (min-width: 860px) {
   .hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; }
   .sec { grid-template-columns: 170px minmax(0, 1fr); gap: 40px; }
@@ -193,6 +209,7 @@ footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); di
       <a href="#experience">experience</a>
       <a href="#projects">projects</a>
       <a href="#background">background</a>
+      <a href="#documents">documents</a>
       <a href="#contact">contact</a>
     </nav>
   </header>
@@ -205,7 +222,8 @@ footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); di
       <p class="lede">I come from backend development, and I now focus on getting applications into production reliably. I work with Linux, Docker, AWS, Terraform and GitHub Actions, and I care about automated deployments, application security and highly available environments.</p>
       <div class="cta">
         <a class="btn solid" href="#contact">Get in touch</a>
-        <a class="btn ghost" href="https://linkedin.com/in/eng-youssef-essam" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="btn ghost" type="button" data-dl="docs/cv.pdf" data-name="Youssef_Essam_CV_Cloud_DevOps.pdf">Download CV</button>
+        <a class="btn ghost" href="https://linkedin.com/in/youssef-essam-b49a11250" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
     <div class="term" role="img" aria-label="Profile summary written as a Terraform-style file">
@@ -406,7 +424,7 @@ footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); di
         <div>
           <h3>Education</h3>
           <p>Bachelor of Computer Science and Information Technology</p>
-          <p class="sub">Fayoum University · GPA 3.54 / 4 (B+) · Graduation project A+</p>
+          <p class="sub">Fayoum University, Faculty of Computers and Artificial Intelligence · Class of 2024 · Very Good with honours · GPA 3.54 / 4 · Graduation project A+</p>
         </div>
         <div>
           <h3>Languages</h3>
@@ -426,6 +444,34 @@ footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); di
     </div>
   </section>
 
+  <section class="sec" id="documents">
+    <div class="label">documents</div>
+    <div class="body">
+      <h2>Certificate, CV and cover letter</h2>
+      <div class="docs">
+        <article class="doc">
+          <button class="shot" type="button" data-full="docs/certificate.jpg" data-alt="Graduation certificate, Fayoum University"><img src="docs/certificate.jpg" alt="Graduation certificate from Fayoum University, Faculty of Computers and Artificial Intelligence"></button>
+          <h3>Graduation certificate</h3>
+          <p>Bachelor's degree in Computers and Information, Computer Science department, Fayoum University. Class of 2024, GPA 3.54 / 4, graduation project rated Excellent (A+).</p>
+          <p class="note">National ID number is hidden on this copy.</p>
+          <button class="btn ghost" type="button" data-dl="docs/certificate.jpg" data-name="Youssef_Essam_Graduation_Certificate.jpg">Download image</button>
+        </article>
+        <article class="doc">
+          <button class="shot" type="button" data-full="docs/cv-preview-1.jpg,docs/cv-preview-2.jpg" data-alt="CV"><img src="docs/cv-preview-1.jpg" alt="First page of Youssef Essam's CV"></button>
+          <h3>CV</h3>
+          <p>Cloud &amp; DevOps Engineer. Two pages covering education, training, skills, languages and projects.</p>
+          <button class="btn ghost" type="button" data-dl="docs/cv.pdf" data-name="Youssef_Essam_CV_Cloud_DevOps.pdf">Download PDF</button>
+        </article>
+        <article class="doc">
+          <button class="shot" type="button" data-full="docs/cover-letter-preview-1.jpg" data-alt="Cover letter"><img src="docs/cover-letter-preview-1.jpg" alt="Youssef Essam's cover letter"></button>
+          <h3>Cover letter</h3>
+          <p>An introduction to my backend background, the Horus security work and my current Cloud &amp; DevOps training at NTI.</p>
+          <button class="btn ghost" type="button" data-dl="docs/cover-letter.pdf" data-name="Youssef_Essam_Cover_Letter.pdf">Download PDF</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="sec contact" id="contact">
     <div class="label">contact</div>
     <div class="body">
@@ -438,7 +484,7 @@ footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); di
         </div>
         <div class="row">
           <span class="k">linkedin</span>
-          <a class="v" href="https://linkedin.com/in/eng-youssef-essam" target="_blank" rel="noopener">linkedin.com/in/eng-youssef-essam</a>
+          <a class="v" href="https://linkedin.com/in/youssef-essam-b49a11250" target="_blank" rel="noopener">linkedin.com/in/youssef-essam-b49a11250</a>
         </div>
         <div class="row">
           <span class="k">location</span>
@@ -454,7 +500,62 @@ footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); di
   </footer>
 </div>
 
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Document preview">
+  <div class="lb-inner" id="lbinner">
+    <button class="lb-close" id="lbclose" type="button">Close</button>
+  </div>
+</div>
+
 <script>
+(function () {
+  /* downloads: only shown when the viewer allows saving files */
+  var dlBtns = [].slice.call(document.querySelectorAll('[data-dl]'));
+  var dl = null;
+  var hideAll = function () { dlBtns.forEach(function (b) { b.hidden = true; }); };
+  var pending;
+  try { pending = window.claude && window.claude.use ? window.claude.use('downloads') : null; } catch (e) { pending = null; }
+  Promise.resolve(pending).then(function (m) { dl = m; if (!m) hideAll(); }, hideAll);
+  dlBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!dl) return;
+      var label = b.textContent;
+      fetch(b.getAttribute('data-dl'))
+        .then(function (r) { if (!r.ok) throw new Error('fetch'); return r.blob(); })
+        .then(function (blob) { return dl.save({ filename: b.getAttribute('data-name'), data: blob }); })
+        .then(function () { b.textContent = 'Saved'; }, function () { b.textContent = 'Not saved'; })
+        .then(function () { setTimeout(function () { b.textContent = label; }, 1800); });
+    });
+  });
+
+  /* preview overlay */
+  var lb = document.getElementById('lb');
+  var inner = document.getElementById('lbinner');
+  var closeBtn = document.getElementById('lbclose');
+  var lastFocus = null;
+  var close = function () {
+    lb.hidden = true;
+    [].slice.call(inner.querySelectorAll('img')).forEach(function (i) { i.remove(); });
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  };
+  [].slice.call(document.querySelectorAll('.shot')).forEach(function (s) {
+    s.addEventListener('click', function () {
+      lastFocus = s;
+      s.getAttribute('data-full').split(',').forEach(function (src, i) {
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = s.getAttribute('data-alt') + ', page ' + (i + 1);
+        inner.appendChild(img);
+      });
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    });
+  });
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) close(); });
+})();
+
 (function () {
   var btn = document.getElementById('copy');
   var el = document.getElementById('email');
