@@ -1,0 +1,484 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Youssef Essam Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@600;700;800&display=swap">
+<style>
+/* Layout: one wide column. Hero pairs the name with a terminal-style profile file.
+   Each section has a mono path label on the left and content on the right.
+   Experience reads like a pipeline run, newest stage first, with a real status per stage. */
+:root {
+  --bg: #EDF0F3;
+  --surface: #FFFFFF;
+  --ink: #10161C;
+  --muted: #566370;
+  --line: #CDD5DC;
+  --accent: #0A7B5E;
+  --accent-soft: #D5EEE5;
+  --warn: #9A5700;
+  --warn-soft: #FAE8C6;
+  --term-bg: #10161C;
+  --term-fg: #CFD9E1;
+  --term-key: #7FD6B8;
+  --term-str: #F2C27A;
+  --term-dim: #6F7F8C;
+  --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1217;
+    --surface: #151C23;
+    --ink: #E6ECF1;
+    --muted: #93A0AC;
+    --line: #27323C;
+    --accent: #3DD6A3;
+    --accent-soft: #11382C;
+    --warn: #F0B14A;
+    --warn-soft: #3A2C10;
+    --term-bg: #090D11;
+    --term-fg: #CBD5DD;
+    --term-key: #7FD6B8;
+    --term-str: #F2C27A;
+    --term-dim: #6F7F8C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1217;
+  --surface: #151C23;
+  --ink: #E6ECF1;
+  --muted: #93A0AC;
+  --line: #27323C;
+  --accent: #3DD6A3;
+  --accent-soft: #11382C;
+  --warn: #F0B14A;
+  --warn-soft: #3A2C10;
+  --term-bg: #090D11;
+  --term-fg: #CBD5DD;
+  --term-key: #7FD6B8;
+  --term-str: #F2C27A;
+  --term-dim: #6F7F8C;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 20px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.12; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+/* top bar */
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.mark { font-family: var(--font-mono); font-size: 14px; font-weight: 500; text-decoration: none; }
+.mark span { color: var(--accent); }
+.nav { display: flex; flex-wrap: wrap; gap: 4px 20px; font-family: var(--font-mono); font-size: 13px; }
+.nav a { text-decoration: none; color: var(--muted); padding: 4px 0; }
+.nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: center; padding-top: 24px; }
+.status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; background: var(--warn-soft); color: var(--warn); padding: 5px 12px; border-radius: 999px; }
+.status i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 800; letter-spacing: -0.03em; margin-top: 20px; }
+.role { font-family: var(--font-mono); font-size: 15px; color: var(--accent); margin-top: 14px; font-weight: 500; }
+.lede { margin-top: 20px; max-width: 54ch; font-size: 18px; color: var(--ink); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 14px; font-weight: 500; text-decoration: none; padding: 11px 18px; border-radius: 6px; border: 1px solid var(--ink); cursor: pointer; }
+.btn.solid { background: var(--ink); color: var(--bg); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn:hover { border-color: var(--accent); }
+.btn.solid:hover { background: var(--accent); color: var(--bg); }
+.btn.ghost:hover { color: var(--accent); }
+
+.term { background: var(--term-bg); color: var(--term-fg); border-radius: 10px; overflow: hidden; min-width: 0; }
+.term-bar { display: flex; gap: 6px; align-items: center; padding: 10px 14px; border-bottom: 1px solid #ffffff14; font-family: var(--font-mono); font-size: 12px; color: var(--term-dim); }
+.term-bar b { width: 9px; height: 9px; border-radius: 50%; background: #ffffff22; }
+.term-bar span { margin-left: 8px; }
+.term pre { margin: 0; padding: 18px 18px 22px; font-family: var(--font-mono); font-size: 13px; line-height: 1.75; overflow-x: auto; }
+.term .k { color: var(--term-key); }
+.term .s { color: var(--term-str); }
+.term .d { color: var(--term-dim); }
+
+/* sections */
+.sec { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.label { font-family: var(--font-mono); font-size: 13px; color: var(--muted); letter-spacing: .04em; padding-top: 6px; }
+.label::before { content: "~/"; color: var(--accent); }
+.body { min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+.body > h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; }
+
+/* stack */
+.stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 32px; }
+.stack h3 { font-size: 15px; font-family: var(--font-mono); font-weight: 500; color: var(--muted); letter-spacing: .02em; margin-bottom: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { font-size: 14px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); }
+.chips.main li { border-color: var(--accent); }
+
+/* pipeline */
+.runs { display: flex; flex-direction: column; }
+.run { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 28px; padding: 0 0 36px 24px; position: relative; border-left: 1px solid var(--line); margin-left: 6px; }
+.run:last-child { padding-bottom: 0; border-left-color: transparent; }
+.run::before { content: ""; position: absolute; left: -7px; top: 6px; width: 13px; height: 13px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--accent); }
+.run.live::before { background: var(--warn); box-shadow: 0 0 0 1px var(--warn); }
+.when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.run h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.org { font-size: 15px; color: var(--muted); margin-top: 2px; }
+.pill { display: inline-block; font-family: var(--font-mono); font-size: 11px; padding: 2px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin-left: 8px; vertical-align: 3px; font-weight: 500; }
+.run.live .pill { background: var(--warn-soft); color: var(--warn); }
+.points { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; max-width: 68ch; }
+.points li { position: relative; padding-left: 18px; }
+.points li::before { content: ""; position: absolute; left: 0; top: .7em; width: 8px; height: 1px; background: var(--muted); }
+
+/* projects */
+.projects { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; min-width: 0; }
+.card.big { padding: 28px; }
+.card h3 { font-size: 22px; font-weight: 700; }
+.card .meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 6px; }
+.grade { display: inline-block; font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 9px; border-radius: 999px; margin-left: 8px; vertical-align: 2px; }
+.card p.sum { margin-top: 14px; max-width: 62ch; }
+.feat { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px 28px; }
+.feat h4 { margin: 0 0 4px; font-size: 14px; font-family: var(--font-mono); font-weight: 500; color: var(--accent); }
+.feat p { font-size: 15px; color: var(--ink); }
+.minor { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+/* facts */
+.facts { display: grid; gap: 28px 32px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.facts h3 { font-size: 15px; font-family: var(--font-mono); font-weight: 500; color: var(--muted); margin-bottom: 8px; }
+.facts p { font-size: 16px; }
+.facts .sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
+.skills-line { max-width: 66ch; }
+
+/* contact */
+.contact h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); }
+.rows { border-top: 1px solid var(--line); }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.row .k { font-family: var(--font-mono); font-size: 13px; color: var(--muted); width: 90px; flex: none; }
+.row .v { font-size: 17px; min-width: 0; overflow-wrap: anywhere; user-select: all; }
+.row a.v { text-decoration-color: var(--line); text-underline-offset: 4px; user-select: auto; }
+.row a.v:hover { text-decoration-color: var(--accent); color: var(--accent); }
+.copy { margin-left: auto; font-family: var(--font-mono); font-size: 12px; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 5px; padding: 5px 12px; cursor: pointer; }
+.copy:hover { border-color: var(--accent); color: var(--accent); }
+footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (min-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; }
+  .sec { grid-template-columns: 170px minmax(0, 1fr); gap: 40px; }
+  .run { grid-template-columns: 150px minmax(0, 1fr); padding-left: 32px; }
+  .run .when { padding-top: 3px; grid-column: 1; grid-row: 1; }
+  .run .main { grid-column: 2; grid-row: 1; }
+  .projects { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .status i { animation: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top"><span>&gt;</span> youssef.essam</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#stack">stack</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#background">background</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div>
+      <span class="status"><i></i> In training: NTI Cloud &amp; DevOps</span>
+      <h1>Youssef Essam</h1>
+      <p class="role">Cloud &amp; DevOps Engineer · Cairo, Egypt</p>
+      <p class="lede">I come from backend development, and I now focus on getting applications into production reliably. I work with Linux, Docker, AWS, Terraform and GitHub Actions, and I care about automated deployments, application security and highly available environments.</p>
+      <div class="cta">
+        <a class="btn solid" href="#contact">Get in touch</a>
+        <a class="btn ghost" href="https://linkedin.com/in/youssef-essam-b49a11250" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="term" role="img" aria-label="Profile summary written as a Terraform-style file">
+      <div class="term-bar"><b></b><b></b><b></b><span>profile.tf</span></div>
+<pre><span class="d">$ cat profile.tf</span>
+
+<span class="k">engineer</span> <span class="s">"youssef_essam"</span> {
+  location   = <span class="s">"Cairo, Egypt"</span>
+  focus      = [
+    <span class="s">"Linux"</span>, <span class="s">"Docker"</span>, <span class="s">"AWS"</span>,
+    <span class="s">"Terraform"</span>, <span class="s">"GitHub Actions"</span>,
+  ]
+  background = [<span class="s">"Node.js"</span>, <span class="s">"Flutter"</span>, <span class="s">".NET"</span>]
+  education  = <span class="s">"BSc CS &amp; IT, Fayoum"</span>
+  training   = <span class="s">"NTI Cloud &amp; DevOps"</span>
+  <span class="d"># status: in progress</span>
+}</pre>
+    </div>
+  </section>
+
+  <section class="sec" id="stack">
+    <div class="label">stack</div>
+    <div class="body">
+      <h2>Tools I work with</h2>
+      <div class="stack">
+        <div>
+          <h3>Cloud &amp; infrastructure</h3>
+          <ul class="chips main">
+            <li>AWS Management Console</li>
+            <li>Terraform (IaC)</li>
+            <li>Docker</li>
+            <li>Docker Compose</li>
+            <li>GitHub Actions</li>
+            <li>CI/CD</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Linux &amp; networking</h3>
+          <ul class="chips">
+            <li>Linux (Ubuntu)</li>
+            <li>Bash</li>
+            <li>Networking fundamentals</li>
+            <li>Cisco Packet Tracer</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Version control</h3>
+          <ul class="chips">
+            <li>Git</li>
+            <li>GitHub</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Backend</h3>
+          <ul class="chips">
+            <li>Node.js</li>
+            <li>Express.js</li>
+            <li>JavaScript</li>
+            <li>REST APIs</li>
+            <li>MongoDB</li>
+            <li>Mongoose</li>
+            <li>JWT</li>
+            <li>bcrypt</li>
+            <li>C#</li>
+            <li>ASP.NET Core</li>
+            <li>SQL Server</li>
+            <li>Entity Framework</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Mobile</h3>
+          <ul class="chips">
+            <li>Flutter</li>
+            <li>Dart</li>
+            <li>Firebase</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Editors &amp; IDEs</h3>
+          <ul class="chips">
+            <li>Visual Studio Code</li>
+            <li>Android Studio</li>
+            <li>IntelliJ IDEA Community</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="experience">
+    <div class="label">experience</div>
+    <div class="body">
+      <h2>Internships and training</h2>
+      <ol class="runs">
+        <li class="run live">
+          <div class="when">Oct 2026 – now</div>
+          <div class="main">
+            <h3>Cloud &amp; DevOps Training<span class="pill">in progress</span></h3>
+            <p class="org">National Telecommunication Institute (NTI)</p>
+            <ul class="points">
+              <li>Building a foundation in cloud computing and DevOps practice: Linux, networking, version control, deployment workflows and automation.</li>
+              <li>Learning how development and operations teams work together to deliver applications reliably.</li>
+              <li>Taking the NTI professional skills modules: business communication, career and personal development, workplace skills, and management and workplace ethics.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="run">
+          <div class="when">Apr 2026 – Jun 2026</div>
+          <div class="main">
+            <h3>.NET Framework<span class="pill">completed</span></h3>
+            <p class="org">Information Technology Institute (ITI), online material</p>
+            <ul class="points">
+              <li>Studied C# and object-oriented programming, LINQ and asynchronous programming.</li>
+              <li>Practiced SQL Server, Entity Framework, database design, CRUD operations and relationships.</li>
+              <li>Explored ASP.NET Core MVC, Web API, Angular and ES6.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="run">
+          <div class="when">Aug 2024 – Feb 2025</div>
+          <div class="main">
+            <h3>Backend Development Intern<span class="pill">completed</span></h3>
+            <p class="org">Bee Interactive</p>
+            <ul class="points">
+              <li>Built server-side features and APIs with Node.js and Express.js to support a mobile application.</li>
+              <li>Designed and managed NoSQL data models with MongoDB and Mongoose for efficient storage and retrieval.</li>
+              <li>Applied authentication and security practices using JSON Web Tokens, user sessions and bcrypt.</li>
+              <li>Worked with the team in the office to connect backend services to application features.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="run">
+          <div class="when">Apr 2024 – May 2024</div>
+          <div class="main">
+            <h3>Material 3 in Flutter: Firebase Chat App<span class="pill">completed</span></h3>
+            <p class="org">Udemy course</p>
+            <ul class="points">
+              <li>Built Flutter applications in Dart with Firebase Authentication, Cloud Firestore and Storage.</li>
+              <li>Implemented real-time chat and Firebase push notifications.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="run">
+          <div class="when">Sep 2022 – Oct 2022</div>
+          <div class="main">
+            <h3>Mobile Development Using Flutter<span class="pill">completed</span></h3>
+            <p class="org">Information Technology Institute (ITI)</p>
+            <ul class="points">
+              <li>Developed Flutter applications with responsive interfaces, multi-screen navigation, forms and application logic.</li>
+              <li>Integrated HTTP APIs and SQLite databases, and practiced debugging.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="label">projects</div>
+    <div class="body">
+      <h2>Things I have built</h2>
+      <div class="projects">
+        <article class="card big">
+          <h3>Horus, Egypt Tourism App<span class="grade">Grade A+</span></h3>
+          <p class="meta">Graduation project · Fayoum University</p>
+          <p class="sum">A mobile app that helps tourists plan a trip in Egypt and connects them with local tour guides.</p>
+          <div class="feat">
+            <div><h4>Accounts</h4><p>Secure registration and password reset for both tourists and tour guides.</p></div>
+            <div><h4>Discovery</h4><p>Listings for attractions, restaurants and hotels.</p></div>
+            <div><h4>Hotel booking</h4><p>Reservations through Booking.com or trivago.</p></div>
+            <div><h4>Travel apps</h4><p>A guide to helpful apps such as Uber.</p></div>
+            <div><h4>Navigation</h4><p>GPS for real-time navigation help.</p></div>
+            <div><h4>Tour guides</h4><p>In-app booking and chat with a guide, who can accept or reject a tourist's request to explore archaeological sites.</p></div>
+            <div><h4>Feedback</h4><p>Reviews and ratings so users can share what worked.</p></div>
+          </div>
+        </article>
+        <div class="minor">
+          <article class="card">
+            <h3>Firebase Real-Time Chat</h3>
+            <p class="meta">Course project · Flutter</p>
+            <p class="sum">A Flutter chat app with Firebase Authentication, Firestore messaging and push notifications.</p>
+          </article>
+          <article class="card">
+            <h3>Cars Store</h3>
+            <p class="meta">Training project · Flutter</p>
+            <p class="sum">A mobile store application built as part of Flutter training.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="background">
+    <div class="label">background</div>
+    <div class="body">
+      <h2>Education and working style</h2>
+      <div class="facts">
+        <div>
+          <h3>Education</h3>
+          <p>Bachelor of Computer Science and Information Technology</p>
+          <p class="sub">Fayoum University · GPA 3.54 / 4 (B+) · Graduation project A+</p>
+        </div>
+        <div>
+          <h3>Languages</h3>
+          <p>Arabic, native</p>
+          <p>English, B1 (intermediate)</p>
+        </div>
+        <div>
+          <h3>Details</h3>
+          <p>Egyptian national</p>
+          <p>Military service completed</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--muted); margin-bottom: 8px;">How I work</h3>
+        <p class="skills-line">Clear communication, good time management and root cause analysis when something breaks. I enjoy the space between development and operations, handling incidents calmly and learning whatever the next problem needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact">
+    <div class="label">contact</div>
+    <div class="body">
+      <h2>Let's talk about your next deploy</h2>
+      <div class="rows">
+        <div class="row">
+          <span class="k">email</span>
+          <span class="v" id="email">yousefessam2067@gmail.com</span>
+          <button class="copy" id="copy" type="button">Copy</button>
+        </div>
+        <div class="row">
+          <span class="k">linkedin</span>
+          <a class="v" href="https://linkedin.com/in/youssef-essam-b49a11250" target="_blank" rel="noopener">linkedin.com/in/youssef-essam-b49a11250</a>
+        </div>
+        <div class="row">
+          <span class="k">location</span>
+          <span class="v">Cairo, Egypt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Youssef Essam · Cloud &amp; DevOps Engineer</span>
+    <span>© 2026</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var el = document.getElementById('email');
+  if (!btn || !el) return;
+  var reset = function () { setTimeout(function () { btn.textContent = 'Copy'; }, 1800); };
+  btn.addEventListener('click', function () {
+    var text = el.textContent.trim();
+    var fallback = function () {
+      var r = document.createRange();
+      r.selectNodeContents(el);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      btn.textContent = 'Selected';
+      reset();
+    };
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        reset();
+      }, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+
+</body></html>
